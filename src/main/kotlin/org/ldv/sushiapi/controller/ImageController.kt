@@ -2,6 +2,7 @@ package org.ldv.sushiapi.controller
 
 import org.springframework.core.io.Resource
 import org.springframework.core.io.ResourceLoader
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -18,7 +19,7 @@ class ImageController(private val resourceLoader: ResourceLoader) {
         val resource = resourceLoader.getResource("classpath:static/image/$imageName.png")
         return if(resource.exists()){
             ResponseEntity.ok()
-                .contentType(PageAttributes.MediaType.IMAGE.PNG)
+                .contentType(MediaType.IMAGE_PNG)
                 .body(resource)
         } else {
             ResponseEntity.notFound().build()
