@@ -12,6 +12,6 @@ fun boxToBoxDtoApi(box: Box): BoxDtoApi {
         box.nomImage,
         box.prix,
         HashSet(box.saveurs.stream().map{it.nom}.toList()),
-        box.alimentBoxes.stream().map{ AlimentBoxDtoApi(it.aliment.nom, it.quantite)}.toList()
+        box.alimentBoxes.stream().map{ AlimentBoxDtoApi(it.aliment?.nom ?: "", it.quantite)}.toList()
     )
 }

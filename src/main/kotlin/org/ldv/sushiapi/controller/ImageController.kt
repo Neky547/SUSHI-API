@@ -16,7 +16,7 @@ class ImageController(private val resourceLoader: ResourceLoader) {
     @GetMapping("/{imageName}")
     fun getImage(@PathVariable imageName: String): ResponseEntity<Resource> {
         //Récupération de l'image depuis sa source :
-        val resource = resourceLoader.getResource("classpath:static/image/$imageName.png")
+        val resource = resourceLoader.getResource("classpath:static/images/$imageName.png")
         return if(resource.exists()){
             ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)

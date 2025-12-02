@@ -4,15 +4,15 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name="saveurs")
-class Saveur(
+class Saveur(){
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val saveurId: Long,
+    val saveurId: Long?=null
 
-    val nom: String,
+    val nom: String=""
 
     //La relation many to many est gérée par la classe Box sur l'attribut saveurs
     @ManyToMany(mappedBy = "saveurs")
-    val boxes: MutableSet<Box>
-) {
+    val boxes: MutableSet<Box> =mutableSetOf()
+
 }

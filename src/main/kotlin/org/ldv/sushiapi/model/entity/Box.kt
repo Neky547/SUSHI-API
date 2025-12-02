@@ -12,15 +12,15 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name="boxes")
-class Box (
+ class Box (){
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var boxId: Long,
+    var boxId: Long?=null
 
-    var nom: String,
-    var nbPieces: Int,
-    var prix: Double,
-    var nomImage: String,
+    var nom: String=""
+    var nbPieces: Int=0
+    var prix: Double=0.0
+    var nomImage: String=""
 
     //Relation many to many des boxes aux saveurs :
     @ManyToMany
@@ -29,10 +29,9 @@ class Box (
         joinColumns = [JoinColumn(name="fk_box_id")],
         inverseJoinColumns = [JoinColumn(name = "fk_saveur_id")]
     )
-    val saveurs: MutableSet<Saveur>,
+    val saveurs: MutableSet<Saveur> =mutableSetOf()
 
     //Relation one to many d'une box à ses aliments
     @OneToMany(mappedBy = "box")
-    val alimentBoxes: MutableList<AlimentBox>
-){
+    val alimentBoxes: MutableList<AlimentBox> = mutableListOf()
 }
